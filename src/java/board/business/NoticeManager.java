@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -39,7 +41,7 @@ public class NoticeManager {
     {
         try
         {
-        return em.createNamedQuery("select n notices n", Notice.class).getResultList();   
+        return em.createNamedQuery(Notice.FINDALL, Notice.class).getResultList();   
         }
         catch(Exception e)
         {
@@ -52,10 +54,37 @@ public class NoticeManager {
     {
         Notice n = new Notice();
         n.setTitle(title);
-        n.setCategory(category);
+        n.setCategory(category.toLowerCase());
+        n.setContent(content);
         n.setPostedDateTime(new Date());
         n.setPoster(em.find(User.class,userid));
         em.persist(n);
+    }
+    
+    public List<Notice> getAllNoticesForUser(String userId)
+    {
+        try
+        {
+            return em.createNamedQuery(Notice.FINDBYUSER,Notice.class).setParameter(":userid", userId).getResultList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<Notice> getNoticesForCategory(String category)
+    {
+        try
+        {
+            return em.createNamedQuery(Notice.FINDBYCATEGORY,Notice.class).setParameter(":category", category).getResultList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

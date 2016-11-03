@@ -7,11 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="notices")
+@NamedQueries({
+    @NamedQuery(name = Notice.FINDALL, query = "SELECT n FROM Notice n"),
+    @NamedQuery(name = Notice.FINDBYCATEGORY, query = "SELECT n FROM Notice n WHERE n.category = :category"),
+    @NamedQuery(name = Notice.FINDBYUSER, query = "SELECT n FROM Notice n WHERE n.poster.userid = :userid")
+})
 public class Notice {
+    public static final String FINDALL = "Notice.FINDALL";
+    public static final String FINDBYCATEGORY = "Notice.FINDBYCATEGORY";
+    public static final String FINDBYUSER = "Notice.FINDBYUSER";
+    
     @Id
     private int noticeId;
     

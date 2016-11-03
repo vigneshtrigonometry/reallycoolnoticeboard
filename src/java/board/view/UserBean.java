@@ -7,6 +7,7 @@ package board.view;
 
 import board.business.UserManager;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RequestScoped
 @Named
-public class UserBean {
+public class UserBean implements Serializable {
 
     @EJB
     private UserManager mgr;
@@ -36,11 +37,15 @@ public class UserBean {
                     .addMessage(null, new FacesMessage("Incorrect login"));
             return (null);
         }
-
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Successful", null);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-
-        return ("index");
+        return "index";
+    }
+    
+    public String logout()
+    {
+        ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
+        return "index?faces-redirect=true";
     }
 
     public String register() {
