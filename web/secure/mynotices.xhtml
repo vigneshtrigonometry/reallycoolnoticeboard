@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>My Notices</title>
+        <script src="#{request.contextPath}/resources/js/jquery-3.1.1.js" type="text/javascript"></script>
+        <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <script src="#{request.contextPath}/resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <f:event type="preRenderView" listener="#{noticeBean.getMyNoticeList('all')}" />
+        <div id="header">
+            <ui:insert name="header" >
+                <ui:include src="/template.xhtml" />
+            </ui:insert>
+        </div>
+        <div class="container">
+            <h:form>
+                <div class="page-header">
+                    <h1>Notices posted by me.<h:commandLink action="secure/addnotice" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" /></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel with-nav-tabs panel-default">
+                            <div class="panel-heading">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab1default" data-toggle="tab">All</a></li>
+                                    <li><a href="#tab2default" data-toggle="tab">Social</a></li>
+                                    <li><a href="#tab3default" data-toggle="tab">For Sale</a></li>
+                                    <li><a href="#tab4default" data-toggle="tab">Jobs</a></li>
+                                    <li><a href="#tab5default" data-toggle="tab">Tuition</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab1default">
+                                            <div class="row">
+                                                <div class="well">
+                                                    <div class="list-group">
+                                                        <a href="#" class="list-group-item">
+                                                            <div class="media col-md-3">
+                                                                <figure class="pull-left">
+                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h4 class="list-group-item-heading"> List group heading </h4>
+                                                                <p class="list-group-item-text"> Qui diam libris ei, vidisse incorrupte at mel. His euismod salutandi dissentiunt eu. Habeo offendit ea mea. Nostro blandit sea ea, viris timeam molestiae an has. At nisl platonem eum. 
+                                                                    Vel et nonumy gubergren, ad has tota facilis probatus. Ea legere legimus tibique cum, sale tantas vim ea, eu vivendo expetendis vim. Voluptua vituperatoribus et mel, ius no elitr deserunt mediocrem. Mea facilisi torquatos ad.
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center">
+                                                                <h2> 14240 <small> votes </small></h2>
+                                                                <button type="button" class="btn btn-default btn-lg btn-block"> Vote Now! </button>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                    <div class="tab-pane fade" id="tab2default">
+
+                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
+                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'social'}" styleClass="list-group-item" />
+                                        </ui:repeat>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="tab3default">
+                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
+                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'forsale'}" styleClass="list-group-item" />
+                                        </ui:repeat>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab4default">
+                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
+                                            <h:outputLabel value="#{nn.title} : #{nn.content}" rendered="#{nn.category == 'jobs'}" styleClass="list-group-item" />
+                                        </ui:repeat>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab5default">
+                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
+                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'tuition'}" styleClass="list-group-item" />
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

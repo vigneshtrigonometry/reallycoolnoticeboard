@@ -1,6 +1,6 @@
-
 package board.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,28 +12,33 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="notices")
+@Table(name = "notices")
 @NamedQueries({
     @NamedQuery(name = Notice.FINDALL, query = "SELECT n FROM Notice n"),
     @NamedQuery(name = Notice.FINDBYCATEGORY, query = "SELECT n FROM Notice n WHERE n.category = :category"),
-    @NamedQuery(name = Notice.FINDBYUSER, query = "SELECT n FROM Notice n WHERE n.poster.userid = :userid")
+    @NamedQuery(name = Notice.FINDBYUSER, query = "SELECT n FROM Notice n WHERE n.poster.userid = :userid"),
+    @NamedQuery(name = Notice.FINDBYUSERCATEGORY, query = "SELECT n FROM Notice n WHERE n.category = :category AND n.poster.userid = :userid")
 })
-public class Notice {
+public class Notice implements Serializable {
+
     public static final String FINDALL = "Notice.FINDALL";
     public static final String FINDBYCATEGORY = "Notice.FINDBYCATEGORY";
     public static final String FINDBYUSER = "Notice.FINDBYUSER";
+    public static final String FINDBYUSERCATEGORY = "Notice.FINDBYUSERCATEGORY";
+    
+    private static final long serialVersionUID = 1L;
     
     @Id
     private int noticeId;
-    
+
     private String title;
     private Date postedDateTime;
     private String category;
     @Lob
     private String content;
-    
+
     @ManyToOne
-    @JoinColumn(name = "userid" , referencedColumnName = "userid")
+    @JoinColumn(name = "userid", referencedColumnName = "userid")
     private User poster;
 
     public int getNoticeId() {
@@ -83,7 +88,5 @@ public class Notice {
     public void setPoster(User poster) {
         this.poster = poster;
     }
-    
-    
-    
+
 }

@@ -87,4 +87,25 @@ public class NoticeManager {
         }
     }
     
+    public List<Notice> getNoticesByCategoryUser(String userid, String category)
+    {
+        try
+        {
+            if(category.toLowerCase().equals("all")){
+                return em.createNamedQuery(Notice.FINDBYUSER, Notice.class)
+                    .setParameter("userid", userid)
+                    .getResultList();
+            }
+            return em.createNamedQuery(Notice.FINDBYUSERCATEGORY, Notice.class)
+                    .setParameter("category", category)
+                    .setParameter("userid", userid)
+                    .getResultList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 }

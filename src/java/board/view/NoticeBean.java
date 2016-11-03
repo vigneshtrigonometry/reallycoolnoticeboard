@@ -7,6 +7,7 @@ package board.view;
 
 import board.business.NoticeManager;
 import board.entity.Notice;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -50,6 +51,11 @@ public class NoticeBean {
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
             return null;
         }
+    }
+    @RolesAllowed("authenticated")
+    public void getMyNoticeList(String category) throws IOException
+    {
+        notices=mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser(), category);
     }
 
     public NoticeManager getMgr() {

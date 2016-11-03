@@ -38,8 +38,9 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <ui:fragment rendered="#{empty request.remoteUser}" >
-                                            <li><a href="/RTNoticeBoard/faces/register.xhtml">Register</a></li>
-                                            <li><a href="/RTNoticeBoard/faces/login.xhtml">Login</a></li>
+                                            
+                                            <li><h:commandLink action="register" value="Register" /></li>
+                                            <li><h:commandLink action="login" value="Login" /></li>
                                         </ui:fragment>
                                         <ui:fragment rendered="#{not empty request.remoteUser}" >
 

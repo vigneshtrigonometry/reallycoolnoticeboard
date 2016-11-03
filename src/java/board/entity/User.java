@@ -1,17 +1,17 @@
 package board.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     private String userid;
     private String password;
