@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="resources/js/jquery-3.1.1.js" type="text/javascript"></script>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+
+        <div id="template">
+            <div id="header">
+                <ui:composition>
+
+                    <h:form>
+                        <nav class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="/RTNoticeBoard/faces/index.xhtml">Notice Board</a>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="/RTNoticeBoard/faces/index.xhtml">Home </a></li>
+
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <ui:fragment rendered="#{empty request.remoteUser}" >
+                                            <li><a href="/RTNoticeBoard/faces/register.xhtml">Register</a></li>
+                                            <li><a href="/RTNoticeBoard/faces/login.xhtml">Login</a></li>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{not empty request.remoteUser}" >
+
+                                            <li><h:commandLink value="#{request.remoteUser}" /></li>
+                                            <li><h:commandLink value="Logout" action="#{request.logout()}" /></li>
+                                        </ui:fragment>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </h:form>
+                </ui:composition>
+            </div>
+        </div>
+    </h:body>
+</html>
+

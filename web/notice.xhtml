@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="resources/js/jquery-3.1.1.js" type="text/javascript"></script>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="container">
+                <h:form>
+                    <div class="page-header">
+                        <h1>Notices<h:outputLabel styleClass="pull-right label label-default" value="Login to Post" rendered="#{empty request.remoteUser}" /><h:commandLink action="secure/addnotice" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" /></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel with-nav-tabs panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tab1default" data-toggle="tab">All</a></li>
+                                        <li><a href="#tab2default" data-toggle="tab">Social</a></li>
+                                        <li><a href="#tab3default" data-toggle="tab">For Sale</a></li>
+                                        <li><a href="#tab4default" data-toggle="tab">Jobs</a></li>
+                                        <li><a href="#tab5default" data-toggle="tab">Tuition</a></li>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab1default">All notices</div>
+                                        <div class="tab-pane fade" id="tab2default">Social Notices</div>
+                                        <div class="tab-pane fade" id="tab3default">For sale notices</div>
+                                        <div class="tab-pane fade" id="tab4default">Job notices</div>
+                                        <div class="tab-pane fade" id="tab5default">Tuition notices</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+
+
+        </ui:composition>
+
+
+    </h:body>
+</html>
+
