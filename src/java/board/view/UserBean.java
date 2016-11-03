@@ -39,14 +39,16 @@ public class UserBean implements Serializable {
         }
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Successful", null);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        return "/index";
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        return "/index?faces-redirect=true";
     }
 
     public String logout() {
         ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "You're logged out", null);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        return "/index";
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        return "/index?faces-redirect=true";
     }
 
     public String register() {

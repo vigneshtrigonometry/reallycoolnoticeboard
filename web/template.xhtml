@@ -44,7 +44,7 @@
                                         </ui:fragment>
                                         <ui:fragment rendered="#{not empty request.remoteUser}" >
 
-                                            <li><h:commandLink value="#{request.remoteUser}" /></li>
+                                            <li><h:commandLink value="#{request.remoteUser}" action="mynotices" /></li>
                                             <li><h:commandLink value="Logout" action="#{userBean.logout()}" onclick="if(confirm('Are you sure you want to logout?'))return true; else return false;" /></li>
                                         </ui:fragment>
                                     </ul>

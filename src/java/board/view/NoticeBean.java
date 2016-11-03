@@ -53,17 +53,9 @@ public class NoticeBean {
         }
     }
     @RolesAllowed("authenticated")
-    public void getMyNoticeList(String category) throws IOException
+    public void getMyNoticeList() throws IOException
     {
-        notices=mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser(), category);
-    }
-
-    public NoticeManager getMgr() {
-        return mgr;
-    }
-
-    public void setMgr(NoticeManager mgr) {
-        this.mgr = mgr;
+        notices=mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
     }
 
     public List<Notice> getNotices() {
