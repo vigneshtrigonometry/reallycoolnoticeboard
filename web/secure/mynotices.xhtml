@@ -39,9 +39,10 @@
                             <div class="panel-body">
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1default">
-                                            <div class="row">
-                                                <div class="well">
-                                                    <div class="list-group">
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="list-group">
+                                                    <ui:repeat var="n" value="#{noticeBean.notices}">
                                                         <a href="#" class="list-group-item">
                                                             <div class="media col-md-3">
                                                                 <figure class="pull-left">
@@ -49,42 +50,120 @@
                                                                 </figure>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> List group heading </h4>
-                                                                <p class="list-group-item-text"> Qui diam libris ei, vidisse incorrupte at mel. His euismod salutandi dissentiunt eu. Habeo offendit ea mea. Nostro blandit sea ea, viris timeam molestiae an has. At nisl platonem eum. 
-                                                                    Vel et nonumy gubergren, ad has tota facilis probatus. Ea legere legimus tibique cum, sale tantas vim ea, eu vivendo expetendis vim. Voluptua vituperatoribus et mel, ius no elitr deserunt mediocrem. Mea facilisi torquatos ad.
-                                                                </p>
+                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                                <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
                                                             <div class="col-md-3 text-center">
-                                                                <h2> 14240 <small> votes </small></h2>
-                                                                <button type="button" class="btn btn-default btn-lg btn-block"> Vote Now! </button>
+                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
                                                             </div>
                                                         </a>
-                                                    </div>
+                                                    </ui:repeat>
+
                                                 </div>
                                             </div>
-                                        
+                                        </div>
+
                                     </div>
                                     <div class="tab-pane fade" id="tab2default">
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="list-group">
+                                                    <ui:repeat var="n" value="#{noticeBean.notices}">
+                                                        <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'social'}" >
+                                                            <div class="media col-md-3">
+                                                                <figure class="pull-left">
+                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                                <p class="list-group-item-text"> #{n.content}</p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center">
+                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            </div>
+                                                        </h:commandLink>
+                                                    </ui:repeat>
 
-                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
-                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'social'}" styleClass="list-group-item" />
-                                        </ui:repeat>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div class="tab-pane fade" id="tab3default">
-                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
-                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'forsale'}" styleClass="list-group-item" />
-                                        </ui:repeat>
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="list-group">
+                                                    <ui:repeat var="n" value="#{noticeBean.notices}">
+                                                        <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'forsale'}" >
+                                                            <div class="media col-md-3">
+                                                                <figure class="pull-left">
+                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                                <p class="list-group-item-text"> #{n.content}</p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center">
+                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            </div>
+                                                        </h:commandLink>
+                                                    </ui:repeat>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab4default">
-                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
-                                            <h:outputLabel value="#{nn.title} : #{nn.content}" rendered="#{nn.category == 'jobs'}" styleClass="list-group-item" />
-                                        </ui:repeat>
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="list-group">
+                                                    <ui:repeat var="n" value="#{noticeBean.notices}">
+                                                        <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'jobs'}" >
+                                                            <div class="media col-md-3">
+                                                                <figure class="pull-left">
+                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                                <p class="list-group-item-text"> #{n.content}</p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center">
+                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            </div>
+                                                        </h:commandLink>
+                                                    </ui:repeat>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab5default">
-                                        <ui:repeat var="nn" value="#{noticeBean.notices}">
-                                            <h:outputLabel value="#{nn.title}" rendered="#{nn.category == 'tuition'}" styleClass="list-group-item" />
-                                        </ui:repeat>
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="list-group">
+                                                    <ui:repeat var="n" value="#{noticeBean.notices}">
+                                                        <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'tuition'}" >
+                                                            <div class="media col-md-3">
+                                                                <figure class="pull-left">
+                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                                <p class="list-group-item-text"> #{n.content}</p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center">
+                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            </div>
+                                                        </h:commandLink>
+                                                    </ui:repeat>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
