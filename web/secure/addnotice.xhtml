@@ -35,7 +35,9 @@
                             <div class="form-group">
                                 <h:outputLabel styleClass="col-md-3 control-label" value="Title" />
                                 <div class="col-md-9">
-                                    <h:inputText id="notice-title" styleClass="form-control" value="#{noticeBean.title}" pt:placeholder="Notice Title" />
+                                    <h:inputText id="notice-title" styleClass="form-control" value="#{noticeBean.title}" pt:placeholder="Notice Title" required="true" requiredMessage="Title cannot be empty.">
+                                        <f:validateLength minimum="3"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -53,7 +55,9 @@
                             <div class="form-group">
                                 <h:outputLabel id="notice-content" value="Content" styleClass="col-md-3 control-label" />
                                 <div class="col-md-9">
-                                    <h:inputTextarea id="content-area" styleClass="form-control" value="#{noticeBean.content}" pt:placeholder="Enter your content here" rows="20" />
+                                    <h:inputTextarea id="content-area" styleClass="form-control" value="#{noticeBean.content}" pt:placeholder="Enter your content here" rows="20" required="true" requiredMessage="Content cannot be empty.">
+                                        <f:validateLength minimum="10" maximum="400"/>
+                                    </h:inputTextarea>
                                 </div>
                             </div>
 
@@ -61,8 +65,7 @@
                             <div class="form-group">
                                 <!-- Button -->                                        
                                 <div class="col-md-offset-3 col-md-9">
-                                        <h:commandButton id="post-btn" styleClass="btn btn-info btn-block" value="&nbsp; Post" action="#{noticeBean.addNotice()}" onclick="sendMyNotice()" />
-                                   
+                                    <h:commandButton id="post-btn" styleClass="btn btn-info btn-block" value="&nbsp; Post" action="#{noticeBean.addNotice()}" onclick="sendMyNotice()" />
                                 </div>
                             </div>
 
@@ -72,27 +75,50 @@
             </div>
         </div>
         <script type="text/javascript">
+            $('#addnoticeform').on('submit', (function (event) {
+                if(document.getElementById('addnoticeform:notice-title').value.length>=3 &amp;&amp; document.getElementById('addnoticeform:content-area').value.length>=10)
+                {
+                    var url = "ws://localhost:8080/RTNoticeBoard/notice";
+                    var socket = new WebSocket(url);
 
-            function sendMyNotice() {
-                var url = "ws://localhost:8080/RTNoticeBoard/notice";
-                var socket = new WebSocket(url);
-
-                socket.onopen = function () {
+                    socket.onopen = function () {
 //                    alert('connected');
-                    var obj = new Object(); 
-                    obj.title = document.getElementById('addnoticeform:notice-title').value; 
-                    obj.category = document.getElementById('addnoticeform:notice-category').value; 
-                    obj.content = document.getElementById('addnoticeform:content-area').value; 
-                    var jsonString= JSON.stringify(obj);
-                    
-                    socket.send(jsonString);
+                        var obj = new Object();
+                        obj.title = document.getElementById('addnoticeform:notice-title').value;
+                        obj.category = document.getElementById('addnoticeform:notice-category').value;
+                        obj.content = document.getElementById('addnoticeform:content-area').value;
+                        obj.poster = document.getElementById('templateForm:userIdLink').innerHTML;
+                        var jsonString = JSON.stringify(obj);
+
+                        socket.send(jsonString);
 //                    console.log(jsonString)
-                }
-                socket.onclose = function () {
-                   // alert('Disconnected')
+                    }
+                    socket.onclose = function () {
+                        // alert('Disconnected')
+                    }
                 }
 
-            }
+            }));
+//            function sendMyNotice() {
+//                var url = "ws://localhost:8080/RTNoticeBoard/notice";
+//                var socket = new WebSocket(url);
+//
+//                socket.onopen = function () {
+////                    alert('connected');
+//                    var obj = new Object(); 
+//                    obj.title = document.getElementById('addnoticeform:notice-title').value; 
+//                    obj.category = document.getElementById('addnoticeform:notice-category').value; 
+//                    obj.content = document.getElementById('addnoticeform:content-area').value; 
+//                    var jsonString= JSON.stringify(obj);
+//                    
+//                    socket.send(jsonString);
+////                    console.log(jsonString)
+//                }
+//                socket.onclose = function () {
+//                   // alert('Disconnected')
+//                }
+//
+//            }
         </script>
     </h:body>
 </html>

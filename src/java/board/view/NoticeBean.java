@@ -27,25 +27,30 @@ import javax.inject.Named;
 @RequestScoped
 public class NoticeBean implements Serializable {
 
-    @EJB private NoticeManager mgr;
+    @EJB
+    private NoticeManager mgr;
     private List<Notice> notices;
     private String title;
     private String content;
     private String category;
-    
-    private void sortNoticesLatestFirst()
-    {
-        notices.sort(new Comparator<Notice>(){
+
+    private void sortNoticesLatestFirst() {
+        notices.sort(new Comparator<Notice>() {
             @Override
             public int compare(Notice n1, Notice n2) {
                 Date d1 = n1.getPostedDateTime();
                 Date d2 = n2.getPostedDateTime();
-                if(d1.before(d2)) return 1;
-                else if(d1.after(d2)) return -1;
-                else return 0;
+                if (d1.before(d2)) {
+                    return 1;
+                } else if (d1.after(d2)) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
         });
     }
+
 
     public void getAllNotices() {
         notices = mgr.getAllNotices();
@@ -55,7 +60,7 @@ public class NoticeBean implements Serializable {
     @RolesAllowed("authenticated")
     public String addNotice() {
         try {
-            System.out.println(">>>>ffffffffffff>>>>>>>"+title + content+ category);
+            System.out.println(">>>>ffffffffffff>>>>>>>" + title + content + category);
             mgr.createNotice(title, content, category, FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notice posted successfully", null);
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
@@ -67,10 +72,10 @@ public class NoticeBean implements Serializable {
             return null;
         }
     }
+
     @RolesAllowed("authenticated")
-    public void getMyNoticeList() throws IOException
-    {
-        notices=mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+    public void getMyNoticeList() throws IOException {
+        notices = mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
         sortNoticesLatestFirst();
     }
 
@@ -105,5 +110,6 @@ public class NoticeBean implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
 
 }

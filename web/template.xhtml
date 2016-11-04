@@ -16,7 +16,7 @@
             <div id="header">
                 <ui:composition>
 
-                    <h:form>
+                    <h:form id="templateForm">
                         <nav class="navbar navbar-inverse">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,28 +29,23 @@
                                     </button>
                                     <a class="navbar-brand" href="/RTNoticeBoard/faces/index.xhtml">Notice Board</a>
                                 </div>
-
-                                <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="/RTNoticeBoard/faces/index.xhtml">Home </a></li>
-
-                                    </ul>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <ui:fragment rendered="#{empty request.remoteUser}" >
-                                            
-                                            <li><h:commandLink action="register" value="Register" /></li>
-                                            <li><h:commandLink action="login" value="Login" /></li>
-                                        </ui:fragment>
-                                        <ui:fragment rendered="#{not empty request.remoteUser}" >
-
-                                            <li><h:commandLink value="#{request.remoteUser}" action="/secure/mynotices" /></li>
-                                            <li><h:commandLink value="Logout" action="#{userBean.logout()}" onclick="if(confirm('Are you sure you want to logout?'))return true; else return false;" /></li>
-                                        </ui:fragment>
-                                    </ul>
-                                </div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <ui:fragment rendered="#{empty request.remoteUser}" >
+                                        <li><h:commandLink action="/register?faces-redirect=true" value="Register" /></li>
+                                        <li><h:commandLink action="/login?faces-redirect=true" value="Login" /></li>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{not empty request.remoteUser}" >
+                                        <li><h:commandLink id="userIdLink" value="#{request.remoteUser}" action="/secure/mynotices" /></li>
+                                        <li><h:commandLink value="Logout" action="#{userBean.logout()}" onclick="if (confirm('Are you sure you want to logout?'))
+                                                    return true;
+                                                else
+                                                    return false;" /></li>
+                                    </ui:fragment>
+                                </ul>
                             </div>
                         </nav>
+                        
+
                     </h:form>
                 </ui:composition>
             </div>

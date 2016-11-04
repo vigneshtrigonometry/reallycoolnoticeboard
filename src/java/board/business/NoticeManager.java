@@ -15,10 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author vigne
- */
 @Stateless
 public class NoticeManager {
     

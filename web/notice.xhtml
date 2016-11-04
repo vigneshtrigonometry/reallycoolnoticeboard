@@ -43,20 +43,17 @@
                                             <div class="row">
                                                 <div class="list-group" id="all-notices-list">
                                                     <ui:repeat var="n" value="#{noticeBean.notices}">
-                                                        <a href="#" class="list-group-item">
-                                                            <div class="media col-md-3">
-                                                                <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                        <h:commandLink action="#" class="list-group-item" >
+                                                            <div class="col-md-8">
+                                                                <h2 class="list-group-item-heading"> #{n.title} </h2>
                                                                 <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
-                                                            <div class="col-md-3 text-center">
-                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            <div class="col-md-3 text-right">
+                                                                <h4> Posted: <small> #{n.postedDateTime} </small></h4>
+                                                                <h4> Posted by: <small> #{n.poster.userid} </small></h4>
                                                             </div>
-                                                        </a>
+                                                        </h:commandLink>
+                                                       
                                                     </ui:repeat>
 
                                                 </div>
@@ -67,17 +64,14 @@
                                                 <div class="list-group" id="social-notices-list">
                                                     <ui:repeat var="n" value="#{noticeBean.notices}">
                                                         <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'social'}">
-                                                            <div class="media col-md-3">
-                                                                <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                            
+                                                            <div class="col-md-8">
+                                                                <h2 class="list-group-item-heading"> #{n.title} </h2>
                                                                 <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
-                                                            <div class="col-md-3 text-center">
-                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            <div class="col-md-3 text-right">
+                                                                <h4> Posted: <small> #{n.postedDateTime} </small></h4>
+                                                                <h4> Posted by: <small> #{n.poster.userid} </small></h4>
                                                             </div>
                                                         </h:commandLink>
                                                     </ui:repeat>
@@ -90,17 +84,13 @@
                                                 <div class="list-group" id="forsale-notices-list">
                                                     <ui:repeat var="n" value="#{noticeBean.notices}">
                                                         <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'forsale'}">
-                                                            <div class="media col-md-3">
-                                                                <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                             <div class="col-md-8">
+                                                                <h2 class="list-group-item-heading"> #{n.title} </h2>
                                                                 <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
-                                                            <div class="col-md-3 text-center">
-                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            <div class="col-md-3 text-right">
+                                                                <h4> Posted: <small> #{n.postedDateTime} </small></h4>
+                                                                <h4> Posted by: <small> #{n.poster.userid} </small></h4>
                                                             </div>
                                                         </h:commandLink>
                                                     </ui:repeat>
@@ -113,17 +103,13 @@
                                                 <div class="list-group" id="jobs-notices-list">
                                                     <ui:repeat var="n" value="#{noticeBean.notices}">
                                                         <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'jobs'}">
-                                                            <div class="media col-md-3">
-                                                                <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                             <div class="col-md-8">
+                                                                <h2 class="list-group-item-heading"> #{n.title} </h2>
                                                                 <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
-                                                            <div class="col-md-3 text-center">
-                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            <div class="col-md-3 text-right">
+                                                                <h4> Posted: <small> #{n.postedDateTime} </small></h4>
+                                                                <h4> Posted by: <small> #{n.poster.userid} </small></h4>
                                                             </div>
                                                         </h:commandLink>
                                                     </ui:repeat>
@@ -136,17 +122,13 @@
                                                 <div class="list-group" id="tuition-notices-list">
                                                     <ui:repeat var="n" value="#{noticeBean.notices}">
                                                         <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'tuition'}">
-                                                            <div class="media col-md-3">
-                                                                <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h4 class="list-group-item-heading"> #{n.title} </h4>
+                                                           <div class="col-md-8">
+                                                                <h2 class="list-group-item-heading"> #{n.title} </h2>
                                                                 <p class="list-group-item-text"> #{n.content}</p>
                                                             </div>
-                                                            <div class="col-md-3 text-center">
-                                                                <h2> Posted: <small> #{n.postedDateTime} </small></h2>
+                                                            <div class="col-md-3 text-right">
+                                                                <h4> Posted: <small> #{n.postedDateTime} </small></h4>
+                                                                <h4> Posted by: <small> #{n.poster.userid} </small></h4>
                                                             </div>
                                                         </h:commandLink>
                                                     </ui:repeat>
@@ -170,8 +152,8 @@
                         var jsonmsg = evt.data;
                         var myData = JSON.parse(jsonmsg)
                         var cont = JSON.parse(myData.message)
-                        document.getElementById('all-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> ' + cont.title + ' </h4><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-center"><h2> Posted: <small> ' + myData.timestamp + ' </small></h2></div></a>' + document.getElementById('all-notices-list').innerHTML
-                        document.getElementById(cont.category + '-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> ' + cont.title + ' </h4><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-center"><h2> Posted: <small> ' + myData.timestamp + ' </small></h2></div></a>' + document.getElementById(cont.category + '-notices-list').innerHTML
+                        document.getElementById('all-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="col-md-8"><h2 class="list-group-item-heading"> ' + cont.title + ' </h2><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-right"><h4> Posted: <small> ' + myData.timestamp + ' </small></h4><h4> Posted by: <small> '+cont.poster+' </small></h4></div></a>' + document.getElementById('all-notices-list').innerHTML
+                        document.getElementById(cont.category + '-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="col-md-8"><h2 class="list-group-item-heading"> ' + cont.title + ' </h2><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-right"><h4> Posted: <small> ' + myData.timestamp + ' </small></h4><h4> Posted by: <small> '+cont.poster+' </small></h4></div></a>' + document.getElementById(cont.category + '-notices-list').innerHTML
                         $("#all-notices-list").hide().fadeIn(2500);
                     }
                 })
