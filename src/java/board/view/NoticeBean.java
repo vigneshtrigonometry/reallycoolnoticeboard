@@ -8,16 +8,14 @@ package board.view;
 import board.business.NoticeManager;
 import board.entity.Notice;
 import java.io.IOException;
-import java.net.URI;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -25,10 +23,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Named
 @RequestScoped
-public class NoticeBean {
+public class NoticeBean implements Serializable {
 
-    @EJB
-    private NoticeManager mgr;
+    @EJB private NoticeManager mgr;
     private List<Notice> notices;
     private String title;
     private String content;
@@ -41,6 +38,7 @@ public class NoticeBean {
     @RolesAllowed("authenticated")
     public String addNotice() {
         try {
+            System.out.println(">>>>ffffffffffff>>>>>>>"+title + content+ category);
             mgr.createNotice(title, content, category, FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notice posted successfully", null);
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);

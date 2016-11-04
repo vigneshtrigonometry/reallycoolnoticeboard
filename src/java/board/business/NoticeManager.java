@@ -52,13 +52,22 @@ public class NoticeManager {
     
     public void createNotice(String title, String content, String category, String userid) throws Exception
     {
-        Notice n = new Notice();
+        try
+        {
+                    Notice n = new Notice();
         n.setTitle(title);
-        n.setCategory(category.toLowerCase());
+        n.setCategory(category);
         n.setContent(content);
         n.setPostedDateTime(new Date());
         n.setPoster(em.find(User.class,userid));
         em.persist(n);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("error in ejb");
+        }
+
     }
     
     public List<Notice> getAllNoticesForUser(String userId)
