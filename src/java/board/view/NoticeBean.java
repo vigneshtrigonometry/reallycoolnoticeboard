@@ -9,6 +9,8 @@ import board.business.NoticeManager;
 import board.entity.Notice;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -30,9 +32,24 @@ public class NoticeBean implements Serializable {
     private String title;
     private String content;
     private String category;
+    
+    private void sortNoticesLatestFirst()
+    {
+        notices.sort(new Comparator<Notice>(){
+            @Override
+            public int compare(Notice n1, Notice n2) {
+                Date d1 = n1.getPostedDateTime();
+                Date d2 = n2.getPostedDateTime();
+                if(d1.before(d2)) return 1;
+                else if(d1.after(d2)) return -1;
+                else return 0;
+            }
+        });
+    }
 
     public void getAllNotices() {
         notices = mgr.getAllNotices();
+        sortNoticesLatestFirst();
     }
 
     @RolesAllowed("authenticated")
@@ -54,6 +71,7 @@ public class NoticeBean implements Serializable {
     public void getMyNoticeList() throws IOException
     {
         notices=mgr.getNoticesByCategoryUser(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+        sortNoticesLatestFirst();
     }
 
     public List<Notice> getNotices() {

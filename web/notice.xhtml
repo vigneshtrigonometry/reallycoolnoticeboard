@@ -19,7 +19,10 @@
             <div class="container">
                 <h:form id="notice-form">
                     <div class="page-header">
-                        <h1>Notices<h:outputLabel styleClass="pull-right label label-default" value="Login to Post" rendered="#{empty request.remoteUser}" /><h:commandLink action="secure/addnotice" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" /></h1>
+                        <h1>Notices<h:outputLabel styleClass="pull-right label label-default" value="Login to Post" rendered="#{empty request.remoteUser}" />
+                            <h:commandLink action="/secure/addnotice?faces-redirect=true" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" />
+                            <h:commandLink action="/secure/mynotices?faces-redirect=true" styleClass="pull-right label label-default" value="My Notices" rendered="#{not empty request.remoteUser}" />
+                        </h1>
 
                     </div>
                     <div class="row">
@@ -162,21 +165,14 @@
                 $(function () {
                     var url = "ws://localhost:8080/RTNoticeBoard/notice";
                     var socket = new WebSocket(url);
-//                    socket.onopen = function () {
-//                        //alert('connected')
-//                    }
-//                    socket.onclose = function () {
-//                        //alert('disconnected')
-//                    }
 
                     socket.onmessage = function (evt) {
                         var jsonmsg = evt.data;
                         var myData = JSON.parse(jsonmsg)
                         var cont = JSON.parse(myData.message)
-                        document.getElementById('all-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> '+cont.title+' </h4><p class="list-group-item-text"> '+cont.content+'</p></div><div class="col-md-3 text-center"><h2> Posted: <small> '+myData.timestamp+' </small></h2></div></a>' + document.getElementById('all-notices-list').innerHTML
-                        document.getElementById(cont.category+'-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> '+cont.title+' </h4><p class="list-group-item-text"> '+cont.content+'</p></div><div class="col-md-3 text-center"><h2> Posted: <small> '+myData.timestamp+' </small></h2></div></a>' + document.getElementById(cont.category+'-notices-list').innerHTML
-                        document.getElementById('all-notices-list').style = "fade in";
-//                        document.getElementById('all-notices-list').style.transition = 'color 2s ease 0s';
+                        document.getElementById('all-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> ' + cont.title + ' </h4><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-center"><h2> Posted: <small> ' + myData.timestamp + ' </small></h2></div></a>' + document.getElementById('all-notices-list').innerHTML
+                        document.getElementById(cont.category + '-notices-list').innerHTML = '<a href="#" class="list-group-item"><div class="media col-md-3"><figure class="pull-left"><img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" /></figure></div><div class="col-md-6"><h4 class="list-group-item-heading"> ' + cont.title + ' </h4><p class="list-group-item-text"> ' + cont.content + '</p></div><div class="col-md-3 text-center"><h2> Posted: <small> ' + myData.timestamp + ' </small></h2></div></a>' + document.getElementById(cont.category + '-notices-list').innerHTML
+                        $("#all-notices-list").hide().fadeIn(2500);
                     }
                 })
             </script>

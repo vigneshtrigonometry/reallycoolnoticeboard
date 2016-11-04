@@ -22,7 +22,7 @@
         <div class="container">
             <h:form>
                 <div class="page-header">
-                    <h1>Notices posted by me.<h:commandLink action="secure/addnotice" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" /></h1>
+                    <h1>Notices posted by me.<h:commandLink action="/secure/addnotice" styleClass="pull-right label label-default" value="Add Notice" rendered="#{not empty request.remoteUser}" /></h1>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -139,7 +139,7 @@
                                                         <h:commandLink action="#" styleClass="list-group-item" rendered="#{n.category == 'tuition'}" >
                                                             <div class="media col-md-3">
                                                                 <figure class="pull-left">
-                                                                    <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" />
+                                                                    <img class="media-object img-rounded img-responsive"  src="https://s-media-cache-ak0.pinimg.com/564x/9f/94/81/9f94811d5fef6b074e645051de678ae2.jpg" alt="placehold.it/350x250" />
                                                                 </figure>
                                                             </div>
                                                             <div class="col-md-6">
@@ -164,4 +164,3 @@
         </div>
     </h:body>
 </html>
-
